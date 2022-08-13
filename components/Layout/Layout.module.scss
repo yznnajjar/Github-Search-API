@@ -1,0 +1,21 @@
+.antd-layout__container{
+  height : 100vh;
+  &--header{
+    height:10%;
+    background-color:var(--color-black-1);
+
+    .header--title{
+      height:100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:var(--color-white-1);
+    }
+  }
+
+  &--content{
+    border:1px solid red;
+    max-height:90%;
+    min-height : 70%;
+  }
+}

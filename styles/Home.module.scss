@@ -1,0 +1,10 @@
+.home-page__container{
+  height:95%;
+  //overflow: auto;
+  .loader{
+    height:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+}

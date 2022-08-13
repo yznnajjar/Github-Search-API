@@ -1,0 +1,19 @@
+.dd-search__container{
+  margin-top:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  .search-type--dropdown{
+    width:30%;
+    & > div {
+      border-radius:5px !important;
+    }
+  }
+
+  &--search-field{
+    margin-top:10px;
+    width:30%;
+  }
+}
