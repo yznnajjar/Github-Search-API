@@ -11,4 +11,23 @@
   .user--profile-link{
     font-weight: 600;
   }
+
+  .repo-name{
+    & > span {
+      margin-right : 10px;
+    }
+  }
+  .forked-users{
+    display: flex;
+    align-items: center;
+    margin-bottom : 10px;
+
+    & > span {
+      margin-right : 10px;
+    }
+
+    &--avatar{
+      cursor: pointer;
+    }
+  }
 }
