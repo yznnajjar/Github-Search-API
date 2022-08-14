@@ -1,3 +1,5 @@
+@import './sass/utils';
+
 .user-repos__container{
   height:80%;
   width: 90%;
@@ -21,9 +23,8 @@
     &--text{
       width:200px;
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @extend .text-ellipsis
+
     }
   }
   .forked-users{
@@ -45,6 +46,9 @@
       width:70px;
       max-width: 70px;
       margin-bottom:5px;
+      display:inline-block;
+      @extend .text-ellipsis
+
     }
   }
 }
