@@ -1,26 +1,20 @@
 import { END_POINT } from "../lib/constant";
 import axios from "axios";
-
-export const config = {
-  headers: {
-    "Content-type": "application/json",
-    "Authorization": `Bearer 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`, // Personal Access Token To Trigger Github Search API
-  },
-};
+import { generateRandomColor } from "../lib/helpers/generalHelpers";
 
 const extractFilesExtension = (data) =>{
   const filesExt = new Set(null);
   data?.tree.filter(item => item.type === "blob").forEach(item => {
-
     if(!item.path?.split(".")?.length) return;
 
     //Check For The Length Of Extension Files
     if(item.path?.split(".").slice(-1)[0]?.length < 10){
       filesExt.add(item.path?.split(".")?.slice(-1)?.join(""));
     }
-
   });
-  return [...filesExt];
+
+  const extWithColors = [...filesExt].map(item => ({color : generateRandomColor() , name: item}));
+  return extWithColors?.length > 40 ? extWithColors.slice(0, 40) : extWithColors;
 };
 
 export const fetchRepos = async (username, pageNum = 1) => {

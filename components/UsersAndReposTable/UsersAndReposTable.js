@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import { Table, Avatar, Tag, Tooltip } from "antd";
-
 // Styles
 import styles from "./UsersAndReposTable.module.scss";
-import { generateRandomColor } from "../../lib/helpers/generalHelpers";
 import { REPOSITORY, STATE_KEY_FOR_FILTERS } from "../../lib/constant";
 import { AppContext } from "../../lib/context/AppContext";
-
 
 export const UsersAndReposTable = (props) => {
   const { state } = useContext(AppContext);
@@ -22,7 +19,7 @@ export const UsersAndReposTable = (props) => {
         return (
           <div className={ styles["repo-name"] }>
             <Avatar size="large" src={ record?.owner?.avatar_url } />
-            { record.name.length > 24 ? (
+            { record?.name?.length > 24 ? (
               <Tooltip placement="top" title={ record.name }>
                 <strong className={ styles["repo-name--text"] }>{ record.name }</strong>
               </Tooltip>
@@ -59,8 +56,7 @@ export const UsersAndReposTable = (props) => {
       width: 300,
       render: (_, record) => {
         return record?.filesExt && record?.filesExt?.map(item => {
-          let color = generateRandomColor();
-          return (<Tag key={ item } color={ color } className={styles["file-type--tag"]}>{ item }</Tag>);
+          return (<Tag key={ item.color } color={ item.color } className={ styles["file-type--tag"] }>{ item.name }</Tag>);
         });
       },
     },

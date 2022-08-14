@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Spin } from "antd";
 // Components
 import { Layout, DropDownWithSearch, UsersAndReposTable } from "../components";
@@ -13,33 +13,13 @@ import styles from "../styles/Home.module.scss";
 
 const Home = () => {
   const { state } = useContext(AppContext);
-  const { userData, isUserSuccess } = useUser();
+  const { userData } = useUser();
   const {
     isReposFetching,
     reposData,
     isReposSuccess,
     isQueriesFetching,
-    totalCount,
-    hasNextPage,
-    fetchNextPage
   } = useRepos();
-
-  useEffect(() => {
-    let fetching = false;
-
-    const onScroll = (event) => {
-      const { scrollHeight, scrollTop, clientHeight } = event.target.scrollingElement;
-
-      if (!fetching && scrollHeight - scrollTop <= clientHeight) {
-        fetching = true;
-        console.log("HI")
-        fetching = false;
-      }
-    };
-
-    document.addEventListener("scroll", onScroll);
-    return () => document.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <Layout>
@@ -57,7 +37,6 @@ const Home = () => {
             isQueriesFetching={ isQueriesFetching }
           />
         ) }
-
       </div>
     </Layout>
   );
