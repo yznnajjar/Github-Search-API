@@ -59,7 +59,7 @@ export const UsersAndReposTable = (props) => {
       width: 300,
       render: (_, record) => {
         return record?.filesExt && record?.filesExt?.map(item => {
-          return (<Tag key={ item } color={ generateRandomColor() }>{ item }</Tag>);
+          return (<Tag key={ item } color={ generateRandomColor() } className={styles["file-type--tag"]}>{ item }</Tag>);
         });
       },
     },

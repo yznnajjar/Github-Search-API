@@ -39,4 +39,12 @@
       cursor: pointer;
     }
   }
+
+  .file-type{
+    &--tag{
+      width:70px;
+      max-width: 70px;
+      margin-bottom:5px;
+    }
+  }
 }
