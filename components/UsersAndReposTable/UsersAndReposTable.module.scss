@@ -13,8 +13,17 @@
   }
 
   .repo-name{
+    display:flex;
     & > span {
       margin-right : 10px;
+    }
+
+    &--text{
+      width:200px;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   .forked-users{

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, Hydrate } from "@tanstack/react-query";
 //Context
 import AppProvider from "../lib/context/AppContext";
 //Styles
@@ -11,9 +11,11 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <QueryClientProvider client={ queryClient }>
-      <AppProvider>
-        <Component { ...pageProps } />
-      </AppProvider>
+      <Hydrate state={ pageProps.dehydratedState }>
+        <AppProvider>
+          <Component { ...pageProps } />
+        </AppProvider>
+      </Hydrate>
     </QueryClientProvider>
   );
 }
