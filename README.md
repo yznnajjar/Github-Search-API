@@ -2,7 +2,7 @@
 
 Welcome to Github Search API Project, this is project is related to github search API by searching for repos and users!
 
-## Important Notes About The Github Search API 
+## Important Notes About The Github Search API And How To Trigger Github Search API
 - You Shouldn't Trigger API To Much Because If You Exceeding The API Rate, The API Will Not Return Data, It Will Keeps Failing
 - If You Want To Trigger API You Can Use Your Personal Access Token, So The API Rate Limit Will Increase 30/S
 
