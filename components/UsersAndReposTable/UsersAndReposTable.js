@@ -1,21 +1,25 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { Table, Avatar, Tag } from "antd";
 // Styles
 import styles from "./UsersAndReposTable.module.scss";
 import { generateRandomColor } from "../../lib/helpers/generalHelpers";
+import { REPOSITORY, STATE_KEY_FOR_FILTERS } from "../../lib/constant";
+import { AppContext } from "../../lib/context/AppContext";
 
 export const UsersAndReposTable = (props) => {
-  const showRepoColumns = useMemo(()=>[
+  const {state} = useContext(AppContext);
+  const showRepoColumns = [
     {
       title: "Repository Name",
       dataIndex: "name",
       key: "name",
       width: 300,
       render: (_, record) => {
+        if(!record)return;
         return (
           <div className={ styles["repo-name"] }>
-            <Avatar size="large" src={ record.owner.avatar_url } />
+            <Avatar size="large" src={ record?.owner?.avatar_url } />
             <strong>{ record.name }</strong>
           </div>
         );
@@ -29,12 +33,14 @@ export const UsersAndReposTable = (props) => {
       render: (_, record) => {
         return record?.forkedUsers && record.forkedUsers?.map(item => {
           return (
-            <div key={ item.name} className={ styles["forked-users"] }>
-              <Link href={ item.profileLink } key={ item.profileLink }>
-                <Avatar src={ item.profileLink } className={ styles["forked-users--avatar"] }>{ item.name[0].toUpperCase() }</Avatar>
-              </Link>
+            <a key={ item.name} target="_blank" rel="noopener noreferrer" href={ item.profileLink }>
+              <div className={ styles["forked-users"] }>
+                <Link href="" passHref>
+                  <Avatar src={ item.profileLink } className={ styles["forked-users--avatar"] }>{ item.name[0].toUpperCase() }</Avatar>
+                </Link>
               <strong>{ item.name }</strong>
             </div>
+            </a>
           );
         });
       },
@@ -46,13 +52,13 @@ export const UsersAndReposTable = (props) => {
       width: 300,
       render: (_, record) => {
         return record?.filesExt && record?.filesExt?.map(item => {
-          return (<Tag key={ record.id } color={ generateRandomColor() }>{ item }</Tag>);
+          return (<Tag key={ item } color={ generateRandomColor() }>{ item }</Tag>);
         });
       },
     },
-  ],[props.data]);
+  ];
 
-  const showUserColumns = useMemo(()=>[
+  const showUserColumns = [
     {
       title: "Name",
       dataIndex: "login",
@@ -85,15 +91,16 @@ export const UsersAndReposTable = (props) => {
         );
       },
     },
-  ],[props.data]);
+  ];
 
   return (
     <div className={ styles["user-repos__container"] }>
       <Table
-        key={props.data[0]?.name+generateRandomColor() || "user-and-repo-table"}
-        columns={ props.isReposSuccess ? showRepoColumns : showUserColumns  }
+        key={"user-and-repo-table"}
+        columns={ state[STATE_KEY_FOR_FILTERS.USER_TYPE_SELECTED] === REPOSITORY ? showRepoColumns : showUserColumns  }
         dataSource={ props.data }
         pagination={ false }
+        loading={props.isQueriesFetching}
       />
     </div>
   );

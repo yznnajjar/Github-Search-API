@@ -15,20 +15,19 @@ const Home = () => {
     isReposFetching,
     reposData,
     isReposSuccess,
+    isQueriesFetching
   } = useRepos();
 
   return (
     <Layout>
       <div className={ styles["home-page__container"] }>
         <DropDownWithSearch />
-        { isReposFetching && <Spin /> }
-        { isUserSuccess || isReposSuccess && (
+        { isReposFetching || isQueriesFetching && <Spin /> }
           <UsersAndReposTable
             data={ isReposSuccess ? reposData : userData }
             isReposSuccess={ isReposSuccess }
+            isQueriesFetching={isQueriesFetching}
           />
-        )
-        }
       </div>
     </Layout>
   );
