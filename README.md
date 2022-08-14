@@ -21,7 +21,6 @@ Welcome to Github Search API Project, this is project is related to github searc
 ## Import Aliases
 - components = src/components
 - api        = src/api
-- routes     = src/routes
 - lib        = src/lib
 - context    = src/lib/contexts
 - helpers    = src/lib/helpers
