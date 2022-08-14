@@ -1,4 +1,4 @@
-# KAIT FRONT-END #
+# GITHUB SEARCH API FRONT-END #
 
 Welcome to Github Search API Project, this is project is related to github search API by searching for repos and users!
 
