@@ -25,21 +25,21 @@ const extractFilesExtension = (data) =>{
 
 export const fetchRepos = async (username, pageNum = 1) => {
   if(username.length === 0) return;
-  const response = await axios.get(`${ END_POINT }/search/repositories?q=is:public+name:${ username }+forks:>=4&per_page=5&page=${pageNum}`, config);
+  const response = await axios.get(`${ END_POINT }/search/repositories?q=is:public+name:${ username }+forks:>=4&per_page=5&page=${pageNum}`);
   return response.data
 };
 
 export const fetchForkedUsers = async (repoName, OwnerName) => {
   if(repoName.length === 0) return;
 
-  const response = await axios.get(`${ END_POINT }/repos/${OwnerName}/${repoName}/forks`, config);
+  const response = await axios.get(`${ END_POINT }/repos/${OwnerName}/${repoName}/forks`);
   const findLastUsersForked = response.data.slice(0,3).map(item => ({name: item.owner.login, profileLink : item.html_url, repoName :item.name}));
   return findLastUsersForked;
 };
 
 export const fetchFilesExtension = async (repoName, ownerName) => {
   if(repoName.length === 0) return;
-  const response = await axios.get(`${ END_POINT }/repos/${ownerName}/${repoName}/git/trees/master?recursive=1`, config);
+  const response = await axios.get(`${ END_POINT }/repos/${ownerName}/${repoName}/git/trees/master?recursive=1`);
 
   return extractFilesExtension(response.data)
 };
