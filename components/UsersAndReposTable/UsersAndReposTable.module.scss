@@ -1,9 +1,12 @@
 @import './sass/utils';
 
 .user-repos__container{
-  height:80%;
+  //height:100%;
+
+  overflow:auto;
   width: 90%;
-  margin: 50px auto auto;
+  margin-block:50px;
+  margin-inline: auto;
 
   .user-name--text{
     margin-left: 20px;
@@ -43,12 +46,11 @@
 
   .file-type{
     &--tag{
-      width:70px;
+      display: inline-block;
+      width: 70px;
       max-width: 70px;
-      margin-bottom:5px;
-      display:inline-block;
-      @extend .text-ellipsis
-
+      margin-bottom: 5px;
+      @extend .text-ellipsis;
     }
   }
 }

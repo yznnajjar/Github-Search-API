@@ -1,5 +1,6 @@
 .antd-layout__container{
-  height : 100vh;
+  height:auto;
+  min-height: 100vh;
   &--header{
     height:10%;
     background-color:var(--color-black-1);
@@ -14,7 +15,8 @@
   }
 
   &--content{
-    max-height:90%;
-    min-height : 70%;
+    max-height : 50%;
+    height     : 50%;
+    min-height : 50%;
   }
 }
